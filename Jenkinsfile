@@ -33,5 +33,12 @@ pipeline {
                 bat 'docker push syedssaad/devops-integration'
             }
         }
+        stage('Deploy'){
+            steps{
+                script{
+                    kubernetesDeploy (configs: 'deploymentservice.yaml',kubeconfigId: 'k8configpwd') 
+                }
+            }
+        }
     }
 }
